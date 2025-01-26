@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
 
         String password = req.getParameter("password");
 
-        if (loggedUser.isPresent() && password!= null && password.length() != 0) {
+        if (loggedUser.isPresent() && password != null && password.length() != 0) {
             req.getRequestDispatcher("/user/hello.jsp").forward(req, resp);
         } else {
             req.getRequestDispatcher("/login.jsp").forward(req, resp);
