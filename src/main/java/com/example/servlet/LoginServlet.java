@@ -23,7 +23,10 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String user = req.getParameter("login");
-        Optional<String> loggedUser = Users.getInstance().getUsers().stream().filter(user::equals).findFirst();
+        Optional<String> loggedUser = Optional.empty();
+        if (user != null) {
+            loggedUser = Users.getInstance().getUsers().stream().filter(user::equals).findFirst();
+        }
 
         String password = req.getParameter("password");
 
