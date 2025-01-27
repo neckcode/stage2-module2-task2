@@ -14,7 +14,7 @@ import java.util.Optional;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Object user = req.getAttribute("user");
+        Object user = req.getSession().getAttribute("user");
         if (user == null) {
             req.getRequestDispatcher("/login.jsp").forward(req, resp);
         } else {
@@ -33,6 +33,7 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("password");
 
         if (loggedUser.isPresent() && password != null && password.length() != 0) {
+            req.getSession().setAttribute("user", user);
             req.getRequestDispatcher("/user/hello.jsp").forward(req, resp);
         } else {
             req.getRequestDispatcher("/login.jsp").forward(req, resp);
