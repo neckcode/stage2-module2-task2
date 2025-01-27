@@ -17,6 +17,8 @@ public class LoginServlet extends HttpServlet {
         Object user = req.getAttribute("user");
         if (user == null) {
             req.getRequestDispatcher("/login.jsp").forward(req, resp);
+        } else {
+            req.getRequestDispatcher("/user/hello.jsp").forward(req, resp);
         }
     }
 
